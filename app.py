@@ -54,9 +54,9 @@ with st.sidebar:
 
 # ---------- DIAGNOSIS FUNCTION ----------
 def diagnose_with_heuristics(symptoms_selected):
-
+    # Normalize symptoms
     normalized_symptoms = {k.lower(): v for k, v in symptoms_selected.items()}
-    
+
     disease_symptom_map = {
         "Flu": ["fatigue", "body aches"],
         "Food Poisoning": ["nausea", "vomiting", "abdominal pain"],
@@ -70,12 +70,14 @@ def diagnose_with_heuristics(symptoms_selected):
         matched = sum(1 for s in required_symptoms if normalized_symptoms.get(s, False))
         disease_scores[disease] = matched
 
+
     best_match = max(disease_scores, key=disease_scores.get)
 
-    if disease_scores[best_match] < 2 :
+    if disease_scores[best_match] < 2:
         return "Unknown"
 
     return best_match
+
 
 # ---------- MAIN INTERFACE ----------
 st.title("🏥 Medical Diagnosis & Booking System")
@@ -98,7 +100,6 @@ if mode == "User":
         "abdominal pain": st.checkbox("Abdominal Pain"),
         "joint pain": st.checkbox("Joint Pain"),
         "rash": st.checkbox("Rash"),
-
     }
 
     if st.button("Diagnose") and not st.session_state.booking_done:
@@ -167,7 +168,7 @@ elif mode == "Admin":
     st.subheader("🧑‍🤝‍🧑 Patient Bookings")
     cursor.execute("SELECT rowid, name, hospital FROM patients")
     patients = cursor.fetchall()
-#made with love - prathmesh-pol 
+
     if patients:
         for p in patients:
             st.write(f"• **{p[1]}** booked at **{p[2]}**")
