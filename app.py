@@ -69,7 +69,7 @@ def diagnose_with_heuristics(symptoms_selected):
 
     best_match = max(disease_scores, key=disease_scores.get)
 
-    if disease_scores[best_match] == 0:
+    if disease_scores[best_match] < 2 :
         return "Unknown"
 
     return best_match
@@ -84,17 +84,17 @@ if mode == "User":
     st.header("🔍 Symptom Checker")
 
     symptoms = {
-        "fever": st.checkbox("Fever", key="fever"),
-"headache": st.checkbox("Headache", key="headache"),
-"chills": st.checkbox("Chills", key="chills"),
-"loss of appetite": st.checkbox("Loss of Appetite", key="loss of appetite"),
-"fatigue": st.checkbox("Fatigue", key="fatigue"),
-"body aches": st.checkbox("Body Aches", key="body aches"),
-"nausea": st.checkbox("Nausea", key="nausea"),
-"vomiting": st.checkbox("Vomiting", key="vomiting"),
-"abdominal pain": st.checkbox("Abdominal Pain", key="abdominal pain"),
-"joint pain": st.checkbox("Joint Pain", key="joint pain"),
-"rash": st.checkbox("Rash", key="rash"),
+        "fever": st.checkbox("Fever"),
+        "headache": st.checkbox("Headache"),
+        "chills": st.checkbox("Chills"),
+        "loss of appetite": st.checkbox("Loss of Appetite"),
+        "fatigue": st.checkbox("Fatigue"),
+        "body aches": st.checkbox("Body Aches"),
+        "nausea": st.checkbox("Nausea"),
+        "vomiting": st.checkbox("Vomiting"),
+        "abdominal pain": st.checkbox("Abdominal Pain"),
+        "joint pain": st.checkbox("Joint Pain"),
+        "rash": st.checkbox("Rash"),
 
     }
 
