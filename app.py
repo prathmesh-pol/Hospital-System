@@ -163,7 +163,7 @@ elif mode == "Admin":
     st.subheader("🧑‍🤝‍🧑 Patient Bookings")
     cursor.execute("SELECT rowid, name, hospital FROM patients")
     patients = cursor.fetchall()
-
+#made with love - prathmesh-pol 
     if patients:
         for p in patients:
             st.write(f"• **{p[1]}** booked at **{p[2]}**")
