@@ -54,6 +54,9 @@ with st.sidebar:
 
 # ---------- DIAGNOSIS FUNCTION ----------
 def diagnose_with_heuristics(symptoms_selected):
+
+    normalized_symptoms = {k.lower(): v for k, v in symptoms_selected.items()}
+    
     disease_symptom_map = {
         "Flu": ["fatigue", "body aches"],
         "Food Poisoning": ["nausea", "vomiting", "abdominal pain"],
@@ -64,7 +67,7 @@ def diagnose_with_heuristics(symptoms_selected):
 
     disease_scores = {}
     for disease, required_symptoms in disease_symptom_map.items():
-        matched = sum(1 for s in required_symptoms if symptoms_selected.get(s, False))
+        matched = sum(1 for s in required_symptoms if normalized_symptoms.get(s, False))
         disease_scores[disease] = matched
 
     best_match = max(disease_scores, key=disease_scores.get)
